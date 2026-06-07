@@ -1,0 +1,11 @@
+{
+  "hotkey": {
+    "modifiers": [],
+    "key": "F8"
+  },
+  "restore_clipboard": true,
+  "ai_enabled": true,
+  "openai_model": "gpt-4o-mini",
+  "max_selection_chars": 120,
+  "hotkey_action": "screen_ocr"
+}

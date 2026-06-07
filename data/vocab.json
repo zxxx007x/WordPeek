@@ -1,0 +1,266 @@
+{
+  "dodge": {
+    "term": "dodge",
+    "zh": "闪避，躲开攻击",
+    "phonetic": "dahj / 近似：道吉",
+    "game_context": "动作游戏里常指按键翻滚、侧闪或短距离位移，用来避开敌人的攻击判定。",
+    "examples": [
+      "Dodge before the boss slams the ground. 在 Boss 砸地前闪避。",
+      "Perfect dodge slows time for a moment. 完美闪避会短暂减慢时间。"
+    ],
+    "phrases": ["dodge roll", "perfect dodge", "dodge window"],
+    "memory_hint": "看到 dodge，就先想到“躲一下”。"
+  },
+  "parry": {
+    "term": "parry",
+    "zh": "招架，弹反",
+    "phonetic": "PAIR-ee / 近似：派瑞",
+    "game_context": "通常是在敌人攻击命中的瞬间防御或反击，成功后让敌人硬直或露出破绽。",
+    "examples": [
+      "Parry the knight's strike to break his guard. 弹反骑士的攻击来破防。",
+      "Some attacks cannot be parried. 有些攻击不能被招架。"
+    ],
+    "phrases": ["perfect parry", "parry timing", "parry window"],
+    "memory_hint": "parry 和 perfect timing 经常一起出现，重点是“卡时机”。"
+  },
+  "stamina": {
+    "term": "stamina",
+    "zh": "耐力，体力槽",
+    "phonetic": "STAM-uh-nuh / 近似：斯塔米娜",
+    "game_context": "控制冲刺、攻击、格挡、翻滚等动作的资源。耗尽后角色通常会变慢或无法继续行动。",
+    "examples": [
+      "Heavy attacks consume more stamina. 重攻击消耗更多耐力。",
+      "Wait for your stamina to recover. 等耐力恢复。"
+    ],
+    "phrases": ["stamina bar", "stamina regen", "out of stamina"],
+    "memory_hint": "stamina 可以理解成“还能不能继续折腾”的体力。"
+  },
+  "cooldown": {
+    "term": "cooldown",
+    "zh": "冷却时间",
+    "phonetic": "KOOL-down / 近似：酷当",
+    "game_context": "技能、道具或动作再次可用前需要等待的时间。",
+    "examples": [
+      "This skill has a 10-second cooldown. 这个技能有 10 秒冷却。",
+      "Reduce cooldown with this perk. 用这个天赋减少冷却。"
+    ],
+    "phrases": ["cooldown reduction", "on cooldown", "global cooldown"],
+    "memory_hint": "cool down 就是“冷下来再用”。"
+  },
+  "stagger": {
+    "term": "stagger",
+    "zh": "硬直，踉跄，失衡",
+    "phonetic": "STAG-er / 近似：斯泰格",
+    "game_context": "角色被打到短暂不能行动，或敌人的架势被打崩前的失衡状态。",
+    "examples": [
+      "Heavy weapons stagger small enemies. 重武器会让小型敌人硬直。",
+      "Build up stagger to open a finisher. 积累失衡值来触发终结技。"
+    ],
+    "phrases": ["stagger damage", "stagger meter", "stagger resistance"],
+    "memory_hint": "把它记成“站不稳”。"
+  },
+  "bleed": {
+    "term": "bleed",
+    "zh": "流血，出血状态",
+    "phonetic": "bleed / 近似：布利德",
+    "game_context": "常见异常状态，会持续掉血，或在累积满后爆发一次大量伤害。",
+    "examples": [
+      "The dagger applies bleed. 这把匕首会施加流血。",
+      "Bleed stacks up quickly on fast attacks. 快速攻击能很快叠出血。"
+    ],
+    "phrases": ["bleed damage", "bleed build", "bleed resistance"],
+    "memory_hint": "blood 是血，bleed 是正在流血。"
+  },
+  "buff": {
+    "term": "buff",
+    "zh": "增益，强化效果",
+    "phonetic": "buf / 近似：巴夫",
+    "game_context": "让角色变强的临时或持续效果，比如加攻击、加防御、加移速。",
+    "examples": [
+      "The shrine gives an attack buff. 神龛会给攻击增益。",
+      "Keep the buff active during the fight. 战斗中保持增益。"
+    ],
+    "phrases": ["attack buff", "temporary buff", "team buff"],
+    "memory_hint": "buff 可以记成“把数值补强”。"
+  },
+  "debuff": {
+    "term": "debuff",
+    "zh": "减益，负面效果",
+    "phonetic": "dee-buf / 近似：迪巴夫",
+    "game_context": "让角色变弱的效果，比如减速、中毒、降防、易伤。",
+    "examples": [
+      "The curse applies a defense debuff. 诅咒会施加防御减益。",
+      "Cleanse all debuffs before the next phase. 进入下一阶段前清除所有负面效果。"
+    ],
+    "phrases": ["remove debuff", "stacking debuff", "damage debuff"],
+    "memory_hint": "de- 有“降低、去掉”的感觉，所以 debuff 是反向 buff。"
+  },
+  "loot": {
+    "term": "loot",
+    "zh": "战利品，掉落物；搜刮",
+    "phonetic": "loot / 近似：路特",
+    "game_context": "既可以指怪物或箱子掉出的物品，也可以作动词表示搜东西。",
+    "examples": [
+      "Loot the chest after the fight. 战斗后搜刮箱子。",
+      "Rare loot drops from elite enemies. 稀有战利品由精英敌人掉落。"
+    ],
+    "phrases": ["loot table", "loot drop", "loot rarity"],
+    "memory_hint": "游戏里看到 loot，基本就是“拿东西”。"
+  },
+  "craft": {
+    "term": "craft",
+    "zh": "制作，合成",
+    "phonetic": "kraft / 近似：克拉夫特",
+    "game_context": "用材料做装备、药剂、弹药或建筑物。",
+    "examples": [
+      "Craft arrows at the workbench. 在工作台制作箭。",
+      "You need iron to craft this weapon. 制作这把武器需要铁。"
+    ],
+    "phrases": ["crafting recipe", "crafting material", "crafting station"],
+    "memory_hint": "Minecraft 里的 craft 就是这个 craft。"
+  },
+  "quest": {
+    "term": "quest",
+    "zh": "任务，委托",
+    "phonetic": "kwest / 近似：奎斯特",
+    "game_context": "RPG 和开放世界里常见，指主线、支线或 NPC 给你的目标。",
+    "examples": [
+      "Track the main quest on the map. 在地图上追踪主线任务。",
+      "Complete side quests to earn gold. 完成支线任务赚金币。"
+    ],
+    "phrases": ["main quest", "side quest", "quest marker"],
+    "memory_hint": "quest 可以记成“去追一个目标”。"
+  },
+  "objective": {
+    "term": "objective",
+    "zh": "目标，当前任务要求",
+    "phonetic": "ub-JEK-tiv / 近似：哦布杰克提夫",
+    "game_context": "UI 上提示你下一步要做什么，例如占点、找到钥匙、击败敌人。",
+    "examples": [
+      "Your objective is to secure the area. 你的目标是控制该区域。",
+      "Follow the objective marker. 跟着目标标记走。"
+    ],
+    "phrases": ["main objective", "optional objective", "objective marker"],
+    "memory_hint": "object 是物体/对象，objective 是你要达成的对象。"
+  },
+  "perk": {
+    "term": "perk",
+    "zh": "天赋，特长，被动加成",
+    "phonetic": "perk / 近似：珀克",
+    "game_context": "角色成长系统里的小能力，通常是被动效果或特定玩法强化。",
+    "examples": [
+      "Unlock a new perk at level 5. 5 级解锁新天赋。",
+      "This perk increases reload speed. 这个天赋提高换弹速度。"
+    ],
+    "phrases": ["perk tree", "passive perk", "perk point"],
+    "memory_hint": "perk 就像角色身上的“小特权”。"
+  },
+  "aggro": {
+    "term": "aggro",
+    "zh": "仇恨，怪物注意力",
+    "phonetic": "AG-roh / 近似：艾格若",
+    "game_context": "敌人决定攻击谁的机制。拉到 aggro 就是怪开始盯着你打。",
+    "examples": [
+      "The tank should hold aggro. 坦克应该拉住仇恨。",
+      "Do not pull aggro before the fight starts. 战斗开始前不要拉怪。"
+    ],
+    "phrases": ["hold aggro", "pull aggro", "aggro range"],
+    "memory_hint": "aggro 来自 aggressive，带攻击性，所以是敌意/仇恨。"
+  },
+  "spawn": {
+    "term": "spawn",
+    "zh": "生成，刷新，出生点",
+    "phonetic": "spawn / 近似：斯泡恩",
+    "game_context": "敌人、道具或玩家出现在场景中的过程，也可指刷新点。",
+    "examples": [
+      "Enemies spawn every night. 敌人每晚刷新。",
+      "Set your spawn point near the camp. 把出生点设在营地附近。"
+    ],
+    "phrases": ["spawn point", "enemy spawn", "respawn timer"],
+    "memory_hint": "re-spawn 就是重新出生。"
+  },
+  "revive": {
+    "term": "revive",
+    "zh": "复活，救起队友",
+    "phonetic": "rih-VIVE / 近似：瑞外夫",
+    "game_context": "让倒地或死亡的角色重新回到战斗。",
+    "examples": [
+      "Revive your teammate before the timer ends. 在计时结束前救起队友。",
+      "You need a revive token. 你需要一个复活道具。"
+    ],
+    "phrases": ["revive token", "revive timer", "self-revive"],
+    "memory_hint": "re- 再一次，vive 和生命有关，合起来就是再活。"
+  },
+  "ultimate": {
+    "term": "ultimate",
+    "zh": "终极技能，大招",
+    "phonetic": "UL-tuh-mit / 近似：奥特米特",
+    "game_context": "角色最强或最关键的技能，通常需要充能或较长冷却。",
+    "examples": [
+      "Save your ultimate for the boss phase. 把大招留到 Boss 阶段。",
+      "Her ultimate heals the whole team. 她的大招治疗全队。"
+    ],
+    "phrases": ["ultimate ability", "ultimate charge", "use your ultimate"],
+    "memory_hint": "ultimate 有“最终、极限”的意思，所以就是大招。"
+  },
+  "critical": {
+    "term": "critical",
+    "zh": "暴击的；关键的；危险状态",
+    "phonetic": "KRIT-i-kul / 近似：克瑞提扣",
+    "game_context": "可能指暴击伤害，也可能指生命值很低的危险状态，要看上下文。",
+    "examples": [
+      "Critical hits deal double damage. 暴击造成双倍伤害。",
+      "Your health is critical. 你的生命值非常危险。"
+    ],
+    "phrases": ["critical hit", "critical chance", "critical health"],
+    "memory_hint": "critical 在游戏里常见两种意思：暴击，或很危险。"
+  },
+  "reload": {
+    "term": "reload",
+    "zh": "换弹，重新装填",
+    "phonetic": "ree-LOAD / 近似：瑞漏德",
+    "game_context": "枪械或弩等武器用完弹药后重新装填。",
+    "examples": [
+      "Reload before entering the room. 进房间前先换弹。",
+      "This attachment improves reload speed. 这个配件提高换弹速度。"
+    ],
+    "phrases": ["reload speed", "auto reload", "reload cancel"],
+    "memory_hint": "load 是装载，reload 是重新装。"
+  },
+  "melee": {
+    "term": "melee",
+    "zh": "近战",
+    "phonetic": "MAY-lay / 近似：梅雷",
+    "game_context": "用刀、剑、拳头等近距离攻击，和 ranged 远程相对。",
+    "examples": [
+      "Melee attacks are silent. 近战攻击是无声的。",
+      "This enemy is weak to melee damage. 这个敌人怕近战伤害。"
+    ],
+    "phrases": ["melee weapon", "melee damage", "melee range"],
+    "memory_hint": "melee 读起来不像拼写，记读音“梅雷”。"
+  },
+  "ranged": {
+    "term": "ranged",
+    "zh": "远程的",
+    "phonetic": "raynjd / 近似：瑞恩吉德",
+    "game_context": "弓、枪、法术、投掷物等远距离攻击方式。",
+    "examples": [
+      "Ranged enemies attack from rooftops. 远程敌人会从屋顶攻击。",
+      "Use ranged weapons against flying targets. 对飞行目标使用远程武器。"
+    ],
+    "phrases": ["ranged weapon", "ranged attack", "ranged damage"],
+    "memory_hint": "range 是距离，ranged 就是有距离优势。"
+  },
+  "aoe": {
+    "term": "AoE",
+    "zh": "范围效果，范围伤害",
+    "phonetic": "A-O-E / 逐字母读",
+    "game_context": "Area of Effect 的缩写，指影响一片区域的技能、爆炸、治疗或伤害。",
+    "examples": [
+      "Move out of the AoE. 离开范围伤害区域。",
+      "This spell deals AoE damage. 这个法术造成范围伤害。"
+    ],
+    "phrases": ["AoE damage", "AoE heal", "AoE marker"],
+    "memory_hint": "Area 是区域，所以 AoE 就是区域效果。"
+  }
+}

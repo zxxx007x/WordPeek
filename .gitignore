@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Local secrets
+data/api_keys.json
+
+# Local runtime data
+data/ai_cache.json
+data/last_capture.png
+data/api_test_*.png
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
