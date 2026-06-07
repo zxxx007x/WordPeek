@@ -2,7 +2,8 @@
   "dodge": {
     "term": "dodge",
     "zh": "闪避，躲开攻击",
-    "phonetic": "dahj / 近似：道吉",
+    "phonetic": "/dɑːdʒ/",
+    "syllables": "dodge",
     "game_context": "动作游戏里常指按键翻滚、侧闪或短距离位移，用来避开敌人的攻击判定。",
     "examples": [
       "Dodge before the boss slams the ground. 在 Boss 砸地前闪避。",
@@ -14,7 +15,8 @@
   "parry": {
     "term": "parry",
     "zh": "招架，弹反",
-    "phonetic": "PAIR-ee / 近似：派瑞",
+    "phonetic": "/ˈpæri/",
+    "syllables": "par·ry",
     "game_context": "通常是在敌人攻击命中的瞬间防御或反击，成功后让敌人硬直或露出破绽。",
     "examples": [
       "Parry the knight's strike to break his guard. 弹反骑士的攻击来破防。",
@@ -26,7 +28,8 @@
   "stamina": {
     "term": "stamina",
     "zh": "耐力，体力槽",
-    "phonetic": "STAM-uh-nuh / 近似：斯塔米娜",
+    "phonetic": "/ˈstæmənə/",
+    "syllables": "stam·i·na",
     "game_context": "控制冲刺、攻击、格挡、翻滚等动作的资源。耗尽后角色通常会变慢或无法继续行动。",
     "examples": [
       "Heavy attacks consume more stamina. 重攻击消耗更多耐力。",
@@ -38,7 +41,8 @@
   "cooldown": {
     "term": "cooldown",
     "zh": "冷却时间",
-    "phonetic": "KOOL-down / 近似：酷当",
+    "phonetic": "/ˈkuːldaʊn/",
+    "syllables": "cool·down",
     "game_context": "技能、道具或动作再次可用前需要等待的时间。",
     "examples": [
       "This skill has a 10-second cooldown. 这个技能有 10 秒冷却。",
@@ -50,7 +54,8 @@
   "stagger": {
     "term": "stagger",
     "zh": "硬直，踉跄，失衡",
-    "phonetic": "STAG-er / 近似：斯泰格",
+    "phonetic": "/ˈstæɡər/",
+    "syllables": "stag·ger",
     "game_context": "角色被打到短暂不能行动，或敌人的架势被打崩前的失衡状态。",
     "examples": [
       "Heavy weapons stagger small enemies. 重武器会让小型敌人硬直。",
@@ -62,7 +67,8 @@
   "bleed": {
     "term": "bleed",
     "zh": "流血，出血状态",
-    "phonetic": "bleed / 近似：布利德",
+    "phonetic": "/bliːd/",
+    "syllables": "bleed",
     "game_context": "常见异常状态，会持续掉血，或在累积满后爆发一次大量伤害。",
     "examples": [
       "The dagger applies bleed. 这把匕首会施加流血。",
@@ -74,7 +80,8 @@
   "buff": {
     "term": "buff",
     "zh": "增益，强化效果",
-    "phonetic": "buf / 近似：巴夫",
+    "phonetic": "/bʌf/",
+    "syllables": "buff",
     "game_context": "让角色变强的临时或持续效果，比如加攻击、加防御、加移速。",
     "examples": [
       "The shrine gives an attack buff. 神龛会给攻击增益。",
@@ -86,7 +93,8 @@
   "debuff": {
     "term": "debuff",
     "zh": "减益，负面效果",
-    "phonetic": "dee-buf / 近似：迪巴夫",
+    "phonetic": "/diːˈbʌf/",
+    "syllables": "de·buff",
     "game_context": "让角色变弱的效果，比如减速、中毒、降防、易伤。",
     "examples": [
       "The curse applies a defense debuff. 诅咒会施加防御减益。",
@@ -98,7 +106,8 @@
   "loot": {
     "term": "loot",
     "zh": "战利品，掉落物；搜刮",
-    "phonetic": "loot / 近似：路特",
+    "phonetic": "/luːt/",
+    "syllables": "loot",
     "game_context": "既可以指怪物或箱子掉出的物品，也可以作动词表示搜东西。",
     "examples": [
       "Loot the chest after the fight. 战斗后搜刮箱子。",
@@ -110,7 +119,8 @@
   "craft": {
     "term": "craft",
     "zh": "制作，合成",
-    "phonetic": "kraft / 近似：克拉夫特",
+    "phonetic": "/kræft/",
+    "syllables": "craft",
     "game_context": "用材料做装备、药剂、弹药或建筑物。",
     "examples": [
       "Craft arrows at the workbench. 在工作台制作箭。",
@@ -122,7 +132,8 @@
   "quest": {
     "term": "quest",
     "zh": "任务，委托",
-    "phonetic": "kwest / 近似：奎斯特",
+    "phonetic": "/kwest/",
+    "syllables": "quest",
     "game_context": "RPG 和开放世界里常见，指主线、支线或 NPC 给你的目标。",
     "examples": [
       "Track the main quest on the map. 在地图上追踪主线任务。",
@@ -134,7 +145,8 @@
   "objective": {
     "term": "objective",
     "zh": "目标，当前任务要求",
-    "phonetic": "ub-JEK-tiv / 近似：哦布杰克提夫",
+    "phonetic": "/əbˈdʒektɪv/",
+    "syllables": "ob·jec·tive",
     "game_context": "UI 上提示你下一步要做什么，例如占点、找到钥匙、击败敌人。",
     "examples": [
       "Your objective is to secure the area. 你的目标是控制该区域。",
@@ -146,7 +158,8 @@
   "perk": {
     "term": "perk",
     "zh": "天赋，特长，被动加成",
-    "phonetic": "perk / 近似：珀克",
+    "phonetic": "/pɝːk/",
+    "syllables": "perk",
     "game_context": "角色成长系统里的小能力，通常是被动效果或特定玩法强化。",
     "examples": [
       "Unlock a new perk at level 5. 5 级解锁新天赋。",
@@ -158,7 +171,8 @@
   "aggro": {
     "term": "aggro",
     "zh": "仇恨，怪物注意力",
-    "phonetic": "AG-roh / 近似：艾格若",
+    "phonetic": "/ˈæɡroʊ/",
+    "syllables": "ag·gro",
     "game_context": "敌人决定攻击谁的机制。拉到 aggro 就是怪开始盯着你打。",
     "examples": [
       "The tank should hold aggro. 坦克应该拉住仇恨。",
@@ -170,7 +184,8 @@
   "spawn": {
     "term": "spawn",
     "zh": "生成，刷新，出生点",
-    "phonetic": "spawn / 近似：斯泡恩",
+    "phonetic": "/spɔːn/",
+    "syllables": "spawn",
     "game_context": "敌人、道具或玩家出现在场景中的过程，也可指刷新点。",
     "examples": [
       "Enemies spawn every night. 敌人每晚刷新。",
@@ -182,7 +197,8 @@
   "revive": {
     "term": "revive",
     "zh": "复活，救起队友",
-    "phonetic": "rih-VIVE / 近似：瑞外夫",
+    "phonetic": "/rɪˈvaɪv/",
+    "syllables": "re·vive",
     "game_context": "让倒地或死亡的角色重新回到战斗。",
     "examples": [
       "Revive your teammate before the timer ends. 在计时结束前救起队友。",
@@ -194,7 +210,8 @@
   "ultimate": {
     "term": "ultimate",
     "zh": "终极技能，大招",
-    "phonetic": "UL-tuh-mit / 近似：奥特米特",
+    "phonetic": "/ˈʌltəmət/",
+    "syllables": "ul·ti·mate",
     "game_context": "角色最强或最关键的技能，通常需要充能或较长冷却。",
     "examples": [
       "Save your ultimate for the boss phase. 把大招留到 Boss 阶段。",
@@ -206,7 +223,8 @@
   "critical": {
     "term": "critical",
     "zh": "暴击的；关键的；危险状态",
-    "phonetic": "KRIT-i-kul / 近似：克瑞提扣",
+    "phonetic": "/ˈkrɪtɪkəl/",
+    "syllables": "crit·i·cal",
     "game_context": "可能指暴击伤害，也可能指生命值很低的危险状态，要看上下文。",
     "examples": [
       "Critical hits deal double damage. 暴击造成双倍伤害。",
@@ -218,7 +236,8 @@
   "reload": {
     "term": "reload",
     "zh": "换弹，重新装填",
-    "phonetic": "ree-LOAD / 近似：瑞漏德",
+    "phonetic": "/ˌriːˈloʊd/",
+    "syllables": "re·load",
     "game_context": "枪械或弩等武器用完弹药后重新装填。",
     "examples": [
       "Reload before entering the room. 进房间前先换弹。",
@@ -230,19 +249,21 @@
   "melee": {
     "term": "melee",
     "zh": "近战",
-    "phonetic": "MAY-lay / 近似：梅雷",
+    "phonetic": "/ˈmeɪleɪ/",
+    "syllables": "me·lee",
     "game_context": "用刀、剑、拳头等近距离攻击，和 ranged 远程相对。",
     "examples": [
       "Melee attacks are silent. 近战攻击是无声的。",
       "This enemy is weak to melee damage. 这个敌人怕近战伤害。"
     ],
     "phrases": ["melee weapon", "melee damage", "melee range"],
-    "memory_hint": "melee 读起来不像拼写，记读音“梅雷”。"
+    "memory_hint": "melee 的拼写和发音不完全直观，重点记住它表示“近战”，常和 ranged 相对。"
   },
   "ranged": {
     "term": "ranged",
     "zh": "远程的",
-    "phonetic": "raynjd / 近似：瑞恩吉德",
+    "phonetic": "/reɪndʒd/",
+    "syllables": "ranged",
     "game_context": "弓、枪、法术、投掷物等远距离攻击方式。",
     "examples": [
       "Ranged enemies attack from rooftops. 远程敌人会从屋顶攻击。",
@@ -254,7 +275,8 @@
   "aoe": {
     "term": "AoE",
     "zh": "范围效果，范围伤害",
-    "phonetic": "A-O-E / 逐字母读",
+    "phonetic": "/ˌeɪ oʊ ˈiː/",
+    "syllables": "A·O·E",
     "game_context": "Area of Effect 的缩写，指影响一片区域的技能、爆炸、治疗或伤害。",
     "examples": [
       "Move out of the AoE. 离开范围伤害区域。",

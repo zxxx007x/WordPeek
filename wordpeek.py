@@ -20,6 +20,11 @@ from tkinter import messagebox, ttk
 
 from PIL import ImageGrab
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 
 APP_DIR = Path(__file__).resolve().parent
 DATA_DIR = APP_DIR / "data"
@@ -267,10 +272,14 @@ def call_openai(term: str, config: dict[str, Any]) -> dict[str, Any]:
 只输出 JSON，不要 Markdown。字段必须是：
 term: 原词
 zh: 简明中文意思
-phonetic: 简短读音提示，可以用音标或中文近似读音
+phonetic: 标准 IPA 音标，不要中文谐音，不要近似读音
+syllables: 用点号分开的英文音节，例如 stam·i·na
 game_context: 它在游戏规则、UI、装备、战斗或任务文本里通常是什么意思
 examples: 2 个短英文例句，每个例句后用中文解释
 phrases: 3 个常见搭配
+word_type: 词性或游戏 UI 类型，例如 noun / verb / status effect / UI label
+common_confusions: 1 到 3 个容易混淆的词或用法
+learning_note: 一个面向中文学习者的简短补充，强调语境、搭配或常见误读；不要写中文谐音
 memory_hint: 一个帮助记忆的小提示
 """.strip()
     if settings["api_style"] == "chat_completions":
@@ -447,7 +456,7 @@ class WordPeekApp:
         self.show_text(
             "用法：\n"
             f"1. 按 {format_hotkey(self.config)}，然后拖框圈住屏幕上的英文词。\n"
-            "2. 它会识别框里的英文，再显示中文、读音和游戏语境。\n"
+            "2. 它会识别框里的英文，再显示中文、音标、音节和游戏语境。\n"
             "3. 本地词库没有时，会尝试用 AI 补充并缓存。\n\n"
             "你也可以直接在上面的输入框里手动输入。"
         )
@@ -699,7 +708,8 @@ class WordPeekApp:
 
         lines = [
             f"中文：{entry.get('zh', '')}",
-            f"读音：{entry.get('phonetic', entry.get('phonetic_hint', ''))}",
+            f"音标：{entry.get('phonetic', entry.get('phonetic_hint', ''))}",
+            f"音节：{entry.get('syllables', '')}",
             "",
             f"游戏语境：{entry.get('game_context', '')}",
         ]
@@ -715,6 +725,20 @@ class WordPeekApp:
             lines.append("常见搭配：")
             for item in phrases:
                 lines.append(f"- {item}")
+        word_type = entry.get("word_type", "")
+        if word_type:
+            lines.append("")
+            lines.append(f"类型：{word_type}")
+        confusions = entry.get("common_confusions", [])
+        if confusions:
+            lines.append("")
+            lines.append("易混点：")
+            for item in confusions:
+                lines.append(f"- {item}")
+        learning_note = entry.get("learning_note", "")
+        if learning_note:
+            lines.append("")
+            lines.append(f"学习备注：{learning_note}")
         hint = entry.get("memory_hint", "")
         if hint:
             lines.append("")
