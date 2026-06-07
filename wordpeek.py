@@ -59,6 +59,7 @@ SM_CYVIRTUALSCREEN = 79
 DEFAULT_CONFIG = {
     "hotkey": {"modifiers": [], "key": "F8"},
     "restore_clipboard": True,
+    "clipboard_plus_enabled": True,
     "ai_enabled": True,
     "openai_model": "gpt-4o-mini",
     "max_selection_chars": 120,
@@ -397,6 +398,9 @@ class WordPeekApp:
         self.history = read_json(HISTORY_PATH, {})
         self.stop_event = threading.Event()
         self.selection_overlay: tk.Toplevel | None = None
+        self.plus_popup: tk.Toplevel | None = None
+        self.last_clipboard_text = ""
+        self.suppress_clipboard_until = 0.0
         self.current_term = ""
         self.current_entry: dict[str, Any] | None = None
 
@@ -412,6 +416,7 @@ class WordPeekApp:
 
         self.build_ui()
         self.start_hotkey_listener()
+        self.start_clipboard_plus()
 
     def build_ui(self) -> None:
         style = ttk.Style()
@@ -463,8 +468,8 @@ class WordPeekApp:
         self.root.bind("<Escape>", lambda _event: self.root.withdraw())
         self.show_text(
             "用法：\n"
-            f"1. 按 {format_hotkey(self.config)}，然后拖框圈住屏幕上的英文词。\n"
-            "2. 它会识别框里的英文，再显示中文、音标、音节和游戏语境。\n"
+            "1. 可复制文字：选中英文后按 Ctrl+C，鼠标旁会出现 +，点一下就查。\n"
+            f"2. 不能复制的画面文字：按 {format_hotkey(self.config)}，拖框圈住英文。\n"
             "3. 本地词库没有时，会尝试用 AI 补充并缓存。\n\n"
             "你也可以直接在上面的输入框里手动输入。"
         )
@@ -497,9 +502,77 @@ class WordPeekApp:
             return ""
 
     def clipboard_set(self, text: str) -> None:
+        self.suppress_clipboard_until = time.time() + 0.8
         self.root.clipboard_clear()
         self.root.clipboard_append(text)
         self.root.update_idletasks()
+
+    def start_clipboard_plus(self) -> None:
+        if not self.config.get("clipboard_plus_enabled", True):
+            return
+        self.last_clipboard_text = self.clipboard_get()
+        self.root.after(700, self.poll_clipboard_for_plus)
+
+    def poll_clipboard_for_plus(self) -> None:
+        if self.stop_event.is_set():
+            return
+        try:
+            text = self.clipboard_get()
+            normalized = normalize_query(text, int(self.config.get("max_selection_chars", 120)))
+            changed = text != self.last_clipboard_text
+            self.last_clipboard_text = text
+            if changed and time.time() >= self.suppress_clipboard_until and self.looks_like_lookup_text(normalized):
+                cursor_x, cursor_y = get_cursor_position() if os.name == "nt" else (900, 180)
+                self.show_plus_popup(normalized, cursor_x, cursor_y)
+        finally:
+            self.root.after(700, self.poll_clipboard_for_plus)
+
+    def looks_like_lookup_text(self, text: str) -> bool:
+        if not text or len(text) > int(self.config.get("max_selection_chars", 120)):
+            return False
+        if "\n" in text or "\r" in text:
+            return False
+        return bool(re.search(r"[A-Za-z]", text))
+
+    def show_plus_popup(self, term: str, cursor_x: int, cursor_y: int) -> None:
+        self.hide_plus_popup()
+        popup = tk.Toplevel(self.root)
+        self.plus_popup = popup
+        popup.overrideredirect(True)
+        popup.attributes("-topmost", True)
+        popup.configure(bg="#111827")
+
+        button = tk.Button(
+            popup,
+            text="+",
+            width=3,
+            height=1,
+            font=("Segoe UI", 14, "bold"),
+            fg="white",
+            bg="#16a34a",
+            activeforeground="white",
+            activebackground="#15803d",
+            relief="flat",
+            command=lambda: self.lookup_from_plus(term),
+        )
+        button.pack()
+        popup.geometry(f"+{cursor_x + 14}+{cursor_y + 14}")
+        popup.after(6000, self.hide_plus_popup)
+
+    def hide_plus_popup(self) -> None:
+        if self.plus_popup is not None:
+            try:
+                self.plus_popup.destroy()
+            except tk.TclError:
+                pass
+            self.plus_popup = None
+
+    def lookup_from_plus(self, term: str) -> None:
+        self.hide_plus_popup()
+        cursor_x, cursor_y = get_cursor_position() if os.name == "nt" else (900, 180)
+        self.show_near_cursor(cursor_x, cursor_y)
+        self.query_var.set(term)
+        self.lookup(term)
 
     def capture_selection(self) -> str:
         previous = self.clipboard_get()
