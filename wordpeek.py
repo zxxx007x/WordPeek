@@ -12,6 +12,7 @@ import threading
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +33,7 @@ VOCAB_PATH = DATA_DIR / "vocab.json"
 CACHE_PATH = DATA_DIR / "ai_cache.json"
 CONFIG_PATH = DATA_DIR / "config.json"
 API_KEYS_PATH = DATA_DIR / "api_keys.json"
+HISTORY_PATH = DATA_DIR / "history.json"
 
 HOTKEY_ID = 702
 WM_HOTKEY = 0x0312
@@ -92,6 +94,8 @@ def ensure_data_files() -> None:
         write_json(CONFIG_PATH, DEFAULT_CONFIG)
     if not CACHE_PATH.exists():
         write_json(CACHE_PATH, {})
+    if not HISTORY_PATH.exists():
+        write_json(HISTORY_PATH, {})
     if not API_KEYS_PATH.exists():
         write_json(API_KEYS_PATH, DEFAULT_API_KEYS)
 
@@ -278,6 +282,8 @@ game_context: 它在游戏规则、UI、装备、战斗或任务文本里通常�
 examples: 2 个短英文例句，每个例句后用中文解释
 phrases: 3 个常见搭配
 word_type: 词性或游戏 UI 类型，例如 noun / verb / status effect / UI label
+category: 从 combat / status / equipment / quest / crafting / UI / multiplayer / general 中选择一个
+tags: 2 到 5 个英文标签，例如 ["combat", "timing"]
 common_confusions: 1 到 3 个容易混淆的词或用法
 learning_note: 一个面向中文学习者的简短补充，强调语境、搭配或常见误读；不要写中文谐音
 memory_hint: 一个帮助记忆的小提示
@@ -388,6 +394,7 @@ class WordPeekApp:
         self.config = DEFAULT_CONFIG | read_json(CONFIG_PATH, {})
         self.vocab = read_json(VOCAB_PATH, {})
         self.cache = read_json(CACHE_PATH, {})
+        self.history = read_json(HISTORY_PATH, {})
         self.stop_event = threading.Event()
         self.selection_overlay: tk.Toplevel | None = None
         self.current_term = ""
@@ -424,7 +431,7 @@ class WordPeekApp:
 
         ttk.Button(top, text="查一下", style="Action.TButton", command=self.lookup_manual).pack(side="left", padx=(8, 0))
         ttk.Button(top, text="框选识别", style="Action.TButton", command=self.start_region_ocr).pack(side="left", padx=(8, 0))
-        ttk.Button(top, text="朗读", style="Action.TButton", command=self.speak_current).pack(side="left", padx=(8, 0))
+        ttk.Button(top, text="喇叭朗读", style="Action.TButton", command=self.speak_current).pack(side="left", padx=(8, 0))
 
         meta = ttk.Frame(outer)
         meta.pack(fill="x", pady=(10, 8))
@@ -450,6 +457,7 @@ class WordPeekApp:
         bottom = ttk.Frame(outer)
         bottom.pack(fill="x", pady=(10, 0))
         ttk.Button(bottom, text="保存到本地词库", command=self.save_current).pack(side="left")
+        ttk.Button(bottom, text="常见词", command=self.show_common_words).pack(side="left", padx=(8, 0))
         ttk.Button(bottom, text="隐藏", command=self.root.withdraw).pack(side="right")
 
         self.root.bind("<Escape>", lambda _event: self.root.withdraw())
@@ -688,6 +696,7 @@ class WordPeekApp:
 
     def show_ai_error(self, term: str, error: str) -> None:
         self.current_entry = None
+        self.record_lookup(term, {"term": term, "source": "miss", "category": "general"})
         self.source_var.set("未补充")
         self.status_var.set("本地没有，AI 也暂时没补上。")
         self.show_text(
@@ -701,6 +710,7 @@ class WordPeekApp:
     def show_entry(self, entry: dict[str, Any]) -> None:
         self.current_entry = entry
         self.current_term = entry.get("term") or self.current_term
+        self.record_lookup(self.current_term, entry)
         self.term_label.configure(text=self.current_term)
         source = entry.get("source", "local")
         self.source_var.set(f"来源：{source}")
@@ -729,6 +739,14 @@ class WordPeekApp:
         if word_type:
             lines.append("")
             lines.append(f"类型：{word_type}")
+        category = self.get_entry_category(entry)
+        if category:
+            lines.append("")
+            lines.append(f"分类：{category}")
+        tags = entry.get("tags", [])
+        if tags:
+            lines.append("")
+            lines.append("标签：" + ", ".join(str(tag) for tag in tags))
         confusions = entry.get("common_confusions", [])
         if confusions:
             lines.append("")
@@ -743,6 +761,64 @@ class WordPeekApp:
         if hint:
             lines.append("")
             lines.append(f"记忆提示：{hint}")
+        self.show_text("\n".join(lines))
+
+    def get_entry_category(self, entry: dict[str, Any]) -> str:
+        category = str(entry.get("category", "")).strip()
+        if category:
+            return category
+        text = " ".join(
+            str(entry.get(field, ""))
+            for field in ("term", "zh", "game_context", "word_type")
+        ).lower()
+        rules = [
+            ("status", ["状态", "异常", "流血", "中毒", "debuff", "buff", "stun", "bleed"]),
+            ("combat", ["攻击", "闪避", "招架", "弹反", "战斗", "伤害", "weapon", "damage", "parry", "dodge"]),
+            ("equipment", ["装备", "武器", "护甲", "词条", "item", "gear", "weapon", "armor"]),
+            ("quest", ["任务", "目标", "委托", "quest", "objective"]),
+            ("crafting", ["制作", "合成", "材料", "craft", "material"]),
+            ("UI", ["ui", "菜单", "界面", "设置", "marker", "label"]),
+            ("multiplayer", ["队友", "团队", "仇恨", "多人", "team", "aggro", "multiplayer"]),
+        ]
+        for name, keywords in rules:
+            if any(keyword in text for keyword in keywords):
+                return name
+        return "general"
+
+    def record_lookup(self, term: str, entry: dict[str, Any]) -> None:
+        key = normalize_query(term).lower()
+        if not key:
+            return
+        item = self.history.get(key, {})
+        count = int(item.get("count", 0)) + 1
+        self.history[key] = {
+            "term": entry.get("term") or term,
+            "count": count,
+            "last_seen": datetime.now().isoformat(timespec="seconds"),
+            "source": entry.get("source", ""),
+            "category": self.get_entry_category(entry),
+        }
+        write_json(HISTORY_PATH, self.history)
+
+    def show_common_words(self) -> None:
+        items = sorted(
+            self.history.values(),
+            key=lambda item: (int(item.get("count", 0)), str(item.get("last_seen", ""))),
+            reverse=True,
+        )
+        if not items:
+            self.show_text("还没有查询记录。查过的词会自动出现在这里。")
+            return
+        lines = ["常见词库："]
+        for item in items[:30]:
+            term = item.get("term", "")
+            count = item.get("count", 0)
+            category = item.get("category", "general")
+            last_seen = item.get("last_seen", "")
+            lines.append(f"- {term}  x{count}  [{category}]  {last_seen}")
+        self.term_label.configure(text="常见词库")
+        self.source_var.set("来源：history")
+        self.status_var.set("按查询次数排序，自动记录。")
         self.show_text("\n".join(lines))
 
     def show_text(self, text: str) -> None:

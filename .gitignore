@@ -8,6 +8,7 @@ data/api_keys.json
 
 # Local runtime data
 data/ai_cache.json
+data/history.json
 data/last_capture.png
 data/api_test_*.png
 
